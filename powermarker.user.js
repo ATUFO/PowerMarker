@@ -22,7 +22,7 @@ var cnt = 0
 
 var render = (() => {
     var showing =  false
-    var shwo=()=>{
+    var show=()=>{
         var pmui = `
         <div id="pm-container">
             <div style="position:absolute;left:0;top:100px;width: 200px;height:90px;background-color:#cbcb41;z-index:999">
@@ -45,17 +45,12 @@ var render = (() => {
         if(showing){
             hide()
         }else{
-            shwo()
+            show()
         }
         showing=~showing
     }
 })()
 
-function UI() {
-
-
-    
-}
 
 function each(ele) {
     ele.setAttribute('style', "background-color:#" + color);

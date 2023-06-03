@@ -11,15 +11,25 @@
 // ==/UserScript==
 
 
+// 随机颜色
+var color = generateRandomColor()
+// mark记录
+var markHistory = []
+
+// 用来标记一次mark,便于后续操作
+var cnt = 0
 
 function each(ele){
-    console.log(ele);
+    ele.setAttribute('style', "background-color:#"+color);
 }
 
-var cnt = 0
 function getClassName(){
-
     return "powermark-"+ cnt
+}
+
+function generateRandomColor(){
+    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+    return randomColor;
 }
 
 (function(){

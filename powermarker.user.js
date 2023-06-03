@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name         PowerMarker 
 // @version      0.5.6
+// @namespace    https://top.taofu.com
 // @description  PowerMarker 
 // @author       Dov
 // @match        https://**
@@ -17,6 +18,7 @@ function each(ele){
 
 var cnt = 0
 function getClassName(){
+
     return "powermark-"+ cnt
 }
 
@@ -28,6 +30,6 @@ function getClassName(){
         })
     }
     window.unmark=function(){
-        $("body") .unmark({className:"xaz-0"})
+        $("body") .unmark({className:"powermark-0"})
     }
 })();

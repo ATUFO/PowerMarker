@@ -19,27 +19,50 @@ var markHistory = []
 // 用来标记一次mark,便于后续操作
 var cnt = 0
 
-function each(ele){
-    ele.setAttribute('style', "background-color:#"+color);
+
+function UI() {
+    var pmui = `
+        <div style="position:absolute;left:0;top:100px;width: 200px;height:90px;background-color:#cbcb41;z-index:999">
+        <div>
+            <input id="pm-kwinput" placeholder="mark something..."></input><button class="pm-btn">Mark</button>
+        </div>
+            <ul class="pm-hist">
+            </ul>
+        </div>
+    `
+    $("body").append(pmui)
+    $(".pm-btn").click(() => mark())
 }
 
-function getClassName(){
-    return "powermark-"+ cnt
+function each(ele) {
+    ele.setAttribute('style', "background-color:#" + color);
 }
 
-function generateRandomColor(){
-    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+function getClassName() {
+    return "powermark-" + cnt
+}
+
+function generateRandomColor() {
+    var randomColor = Math.floor(Math.random() * 16777215).toString(16);
     return randomColor;
 }
 
-(function(){
-    window.onload=function(){
-        $("body").mark("Us",{
-                each,
-                className: getClassName()
-        })
+function mark() {
+    color = generateRandomColor()
+    var keyword = $("#pm-kwinput").val()
+    console.log(keyword);
+    $("body").mark(keyword, {
+        each,
+        className: getClassName()
+    })
+    $(".pm-hist").append(`<li>${keyword}</li>`)
+}
+
+(function () {
+    window.onload = function () {
+        UI()
     }
-    window.unmark=function(){
-        $("body") .unmark({className:"powermark-0"})
+    window.unmark = function () {
+        $("body").unmark({ className: "powermark-0" })
     }
 })();

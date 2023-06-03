@@ -20,18 +20,41 @@ var markHistory = []
 var cnt = 0
 
 
+var render = (() => {
+    var showing =  false
+    var shwo=()=>{
+        var pmui = `
+        <div id="pm-container">
+            <div style="position:absolute;left:0;top:100px;width: 200px;height:90px;background-color:#cbcb41;z-index:999">
+            <div>
+                <input id="pm-kwinput" placeholder="mark something..."></input><button class="pm-btn">Mark</button>
+            </div>
+                <ul class="pm-hist">
+                </ul>
+            </div>
+        </div>
+        `
+        $("body").append(pmui)
+        $(".pm-btn").click(() => mark())
+    }
+    var hide=()=>{
+        $("#pm-container").remove()   
+    }
+
+    return ()=>{
+        if(showing){
+            hide()
+        }else{
+            shwo()
+        }
+        showing=~showing
+    }
+})()
+
 function UI() {
-    var pmui = `
-        <div style="position:absolute;left:0;top:100px;width: 200px;height:90px;background-color:#cbcb41;z-index:999">
-        <div>
-            <input id="pm-kwinput" placeholder="mark something..."></input><button class="pm-btn">Mark</button>
-        </div>
-            <ul class="pm-hist">
-            </ul>
-        </div>
-    `
-    $("body").append(pmui)
-    $(".pm-btn").click(() => mark())
+
+
+    
 }
 
 function each(ele) {
@@ -59,9 +82,12 @@ function mark() {
 }
 
 (function () {
-    window.onload = function () {
-        UI()
+    window.onkeydown = (e)=>{
+        if(e.ctrlKey &&e.key=='q'){  // ctrl q
+            render()
+        }
     }
+
     window.unmark = function () {
         $("body").unmark({ className: "powermark-0" })
     }

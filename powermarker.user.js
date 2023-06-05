@@ -48,7 +48,7 @@ var ui = ()=>{
     `
     $("body").append(pmui)
     $(".pm-btn").click(() => mark())
-    $( "#pm-container" ).draggable({cancel: "input,textarea,button,select,option,a,li"})
+    $( "#pm-container" ).draggable({cancel: "input,textarea,button,select,option,a"})
 }
 
 
@@ -75,7 +75,7 @@ function mark() {
         className
     })
 
-    let li = $(`<li>${keyword}</li>`)[0]
+    let li = $(`<li><a>${keyword}</a></li>`)[0]
     let a = $(`<a>  x</a>`)[0]
     li.appendChild(a)
     a.onclick=()=>{removeWord(keyword),li.remove()}

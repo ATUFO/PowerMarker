@@ -12,6 +12,7 @@
 // ==/UserScript==
 
 
+import { createApp } from 'vue' 
 
 
 // 随机颜色
@@ -37,8 +38,12 @@ var render = (() => {
 })()
 
 var ui = ()=>{
-    var pmui = require("./index.html")
-    $("body").append(pmui.default)
+    var pmui = require("./index.html").default
+    $("body").append(pmui)
+
+    var pvue = createApp( require("./index.vue").default )
+    pvue.mount("#pm-container") 
+
     $(".pm-btn").click(() => mark())
     $( "#pm-container" ).draggable({cancel: "input,textarea,button,select,option,a"})
 }
